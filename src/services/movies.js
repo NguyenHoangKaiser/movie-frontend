@@ -30,7 +30,7 @@ class MovieDataService {
   }
 
   getRating() {
-    return axios.get("http://localhost:8000/api/v1/movies/rating");
+    return axios.get("http://localhost:8000/api/v1/movies/ratings");
   }
 }
 
