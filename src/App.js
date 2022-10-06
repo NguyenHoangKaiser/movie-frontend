@@ -43,7 +43,8 @@ function App() {
       
       <Routes>
         <Route path="/movies" element={<MoviesList />} />
-        {/* <Route path="/movies/:id" element={<Movie />} /> */}
+        {/* <Route path="/movies/:id" render={(props) => <Movie {...props} user={user} />} /> */}
+        <Route path="/movies/id/:id" element={<Movie user={user} />} />
         {/* <Route path="/add-review" element={<AddReview />} /> */}
         <Route path="/login" element={<Login login={login} />} />
       </Routes>

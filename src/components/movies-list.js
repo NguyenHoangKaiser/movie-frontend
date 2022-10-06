@@ -115,7 +115,7 @@ const MoviesList = (props) => {
         <Row>
           {movies.map((movie) => {
             return (
-              <Col key={movie.id}>
+              <Col key={movie._id}>
                 <Card style={{ width: "18rem" }}>
                   <Card.Img src={`${movie.poster}/100px180`} />
                   <Card.Body>
@@ -123,7 +123,7 @@ const MoviesList = (props) => {
                     <Card.Text>Rating: {movie.rated}</Card.Text>
                     <Card.Text>{movie.plot}</Card.Text>
                     <Link
-                      to={`/movies/${movie.id}`}
+                      to={`/movies/id/${movie._id}`}
                       className="btn btn-primary"
                     >
                       View Reviews
