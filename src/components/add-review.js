@@ -42,7 +42,6 @@ const AddReview = ({ user }) => {
         review_id: dataState._id
       };
       //get existing review id from location state
-      // data.review_id = dataState._id;
       MovieDataService.updateReview(data2)
         .then((response) => {
           setSubmitted(true);
@@ -76,7 +75,7 @@ const AddReview = ({ user }) => {
             <Form.Control
               type="text"
               required
-              // value={dataState.review}
+              // value={review}
               onChange={onChangeReview}
             />
           </Form.Group>

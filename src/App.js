@@ -32,9 +32,6 @@ function App() {
             <Nav.Link>
               <Link to={"/movies"}>Movies</Link>
             </Nav.Link>
-            {/* <Nav.Link as={Link} to={"/add-review"}>
-              Add Review
-            </Nav.Link> */}
             <Nav.Link>
               {user.id ? (
                 <Button variant="primary" type="button" onClick={logout}>
@@ -50,7 +47,6 @@ function App() {
 
       <Routes>
         <Route path="/movies" element={<MoviesList />} />
-        {/* <Route path="/movies/:id" render={(props) => <Movie {...props} user={user} />} /> */}
         <Route path="/movies/id/:id" element={<Movie user={user} />} />
         <Route path="/movies/:id/review" element={<AddReview user={user} />} />
         <Route path="/login" element={<Login logIn={setUser} />} />

@@ -32,8 +32,6 @@ const Movie = ({ user }) => {
   useEffect(() => {
     getMovie(params.id);
   }, [params.id]);
-  
-  console.log(`UserId: ${user.id} and Review ID: ${movie.title}`);
 
   const deleteReview = (reviewId, index) => {
     MovieDataService.deleteReview(reviewId, user.id)
@@ -73,12 +71,11 @@ const Movie = ({ user }) => {
                   return (
                     <Card key={review._id}>
                       <Card.Body>
-                        <h5>{`ID: ${review._id}`}</h5>
                         <h5>{`${review.name} reviewed on ${moment(
                           review.date
                         ).format("Do MMMM YYYY")}`}</h5>
                         <p>{review.review}</p>
-                        {user.id === review.user_id && (
+                        {user.name === review.name && user.id === review.user_id && (
                           <Row>
                             <Col>
                               <Link
