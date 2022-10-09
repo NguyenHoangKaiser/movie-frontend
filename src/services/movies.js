@@ -16,15 +16,15 @@ class MovieDataService {
   }
 
   createReview(data) {
-    return axios.post("http://localhost:8000/api/v1/movies/reviews", data);
+    return axios.post("http://localhost:8000/api/v1/movies/review", data);
   }
 
   updateReview(data) {
-    return axios.put("http://localhost:8000/api/movies/reviews", data);
+    return axios.put("http://localhost:8000/api/v1/movies/review", data);
   }
 
   deleteReview(id, userId) {
-    return axios.delete("http://localhost:8000/api/v1/movies/reviews", {
+    return axios.delete("http://localhost:8000/api/v1/movies/review", {
       data: { review_id: id, user_id: userId },
     });
   }

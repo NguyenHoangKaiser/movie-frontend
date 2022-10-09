@@ -10,13 +10,15 @@ import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Button from "react-bootstrap/Button";
 
-const Movie = (user) => {
+const Movie = ({ user }) => {
   const [movie, setMovie] = useState({
     id: null,
     title: "",
     rated: "",
     reviews: [],
   });
+
+  console.log(`this is the user ${user.name} and ${user.id}`);
 
   const getMovie = (id) => {
     MovieDataService.get(id)
@@ -33,6 +35,8 @@ const Movie = (user) => {
   useEffect(() => {
     getMovie(params.id);
   }, [params.id]);
+  
+  console.log(`UserId: ${user.id} and Review ID: ${movie.title}`);
 
   return (
     <div>
@@ -46,7 +50,7 @@ const Movie = (user) => {
               <Card.Header as="h5">{movie.title}</Card.Header>
               <Card.Body>
                 <Card.Text>{movie.plot}</Card.Text>
-                {user && (
+                {user.id && (
                   <Link to={`/movies/${params.id}/review`}>Add Reviews</Link>
                 )}
               </Card.Body>
@@ -57,18 +61,19 @@ const Movie = (user) => {
                   return (
                     <Card key={review.id}>
                       <Card.Body>
+                        <h5>{`ID: ${review._id}`}</h5>
                         <h5>{`${review.name} reviewed on ${moment(
                           review.date
                         ).format("Do MMMM YYYY")}`}</h5>
                         <p>{review.review}</p>
-                        {user && user.id === review.userId && (
+                        {user.id === review.user_id && (
                           <Row>
                             <Col>
                               <Link
                                 to={{
-                                  pathname: `/movies${params.id}/review`,
-                                  state: { currentReview: review },
+                                  pathname: `/movies/${params.id}/review`,
                                 }}
+                                state={review}
                               >
                                 Edit
                               </Link>

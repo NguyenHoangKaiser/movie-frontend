@@ -9,17 +9,17 @@ const Login = ({ logIn }) => {
   const navigate = useNavigate();
 
   const onChangeName = (e) => {
-    const name1 = e.target.value;
-    setName(name1);
+    const name = e.target.value;
+    setName(name);
   };
 
   const onChangeId = (e) => {
-    const id1 = e.target.value;
-    setId(id1);
+    const id = e.target.value;
+    setId(id);
   };
 
   const login = () => {
-    logIn(name, id);
+    logIn({ name, id });
     navigate("/");
   };
 

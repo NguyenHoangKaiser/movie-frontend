@@ -6,21 +6,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
 
-// import AddReview from "./components/add-review";
+import AddReview from "./components/add-review";
 import MoviesList from "./components/movies-list";
 import Movie from "./components/movie";
 import Login from "./components/login";
 
 function App() {
-  const [user, setUser] = React.useState(null);
-
-  async function logIn(user = null) {
-    setUser(user);
-    console.log(user);
-  }
+  const [user, setUser] = React.useState({ name: "ho", id: "" });
+  console.log(`Name: ${user.name} and ID: ${user.id}`);
+  // async function logIn(name, id) {
+  //   setUser({ name, id });
+  //   console.log(`user ${user.name}`);
+  // }
 
   async function logout() {
-    setUser(null);
+    setUser({ name: "logout", id: "" });
   }
 
   return (
@@ -37,9 +37,9 @@ function App() {
               Add Review
             </Nav.Link> */}
             <Nav.Link>
-              {user ? (
+              {user.id ? (
                 <Button variant="primary" type="button" onClick={logout}>
-                  Logout User
+                  Logout User {user.name}
                 </Button>
               ) : (
                 <Link to={"/login"}>Login</Link>
@@ -53,8 +53,8 @@ function App() {
         <Route path="/movies" element={<MoviesList />} />
         {/* <Route path="/movies/:id" render={(props) => <Movie {...props} user={user} />} /> */}
         <Route path="/movies/id/:id" element={<Movie user={user} />} />
-        {/* <Route path="/add-review" element={<AddReview />} /> */}
-        <Route path="/login" element={<Login logIn={logIn} />} />
+        <Route path="/movies/:id/review" element={<AddReview user={user} />} />
+        <Route path="/login" element={<Login logIn={setUser} />} />
       </Routes>
     </div>
   );
