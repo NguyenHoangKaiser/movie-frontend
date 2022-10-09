@@ -1,6 +1,6 @@
 # This is the Frontend part of a 2-part movies-review project.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).\
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
