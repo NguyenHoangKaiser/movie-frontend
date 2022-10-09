@@ -18,13 +18,10 @@ const Movie = ({ user }) => {
     reviews: [],
   });
 
-  console.log(`this is the user ${user.name} and ${user.id}`);
-
   const getMovie = (id) => {
     MovieDataService.get(id)
       .then((response) => {
         setMovie(response.data);
-        console.log(response.data);
       })
       .catch((e) => {
         console.log(e);
@@ -37,6 +34,21 @@ const Movie = ({ user }) => {
   }, [params.id]);
   
   console.log(`UserId: ${user.id} and Review ID: ${movie.title}`);
+
+  const deleteReview = (reviewId, index) => {
+    MovieDataService.deleteReview(reviewId, user.id)
+      .then(() => {
+        setMovie((prevState) => {
+          prevState.reviews.splice(index, 1);
+          return {
+            ...prevState,
+          };
+        });
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
 
   return (
     <div>
@@ -57,9 +69,9 @@ const Movie = ({ user }) => {
             </Card>
             <br />
             {movie.reviews && movie.reviews.length > 0
-              ? movie.reviews.map((review) => {
+              ? movie.reviews.map((review, index) => {
                   return (
-                    <Card key={review.id}>
+                    <Card key={review._id}>
                       <Card.Body>
                         <h5>{`ID: ${review._id}`}</h5>
                         <h5>{`${review.name} reviewed on ${moment(
@@ -79,7 +91,12 @@ const Movie = ({ user }) => {
                               </Link>
                             </Col>
                             <Col>
-                              <Button variant="danger">Delete</Button>
+                              <Button
+                                variant="danger"
+                                onClick={() => deleteReview(review._id, index)}
+                              >
+                                Delete
+                              </Button>
                             </Col>
                           </Row>
                         )}

@@ -13,7 +13,6 @@ import Login from "./components/login";
 
 function App() {
   const [user, setUser] = React.useState({ name: "ho", id: "" });
-  console.log(`Name: ${user.name} and ID: ${user.id}`);
   // async function logIn(name, id) {
   //   setUser({ name, id });
   //   console.log(`user ${user.name}`);
